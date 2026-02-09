@@ -28,6 +28,7 @@ public class RangedEnemy : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();       
         timer = fireRate;     
         target = GameObject.FindGameObjectWithTag("Player").transform;
+        pooler = FindObjectOfType<ObjectPooler>();
     }
 
     private void Update()
@@ -51,7 +52,7 @@ public class RangedEnemy : MonoBehaviour
     {
         if (timer <= 0)
         {
-            GameObject bullet = pooler.SpawnFromPools("EnemyBullet",firePoint.position,firePoint.rotation);
+            GameObject bullet = pooler.SpawnFromPools("EnemyBullet", firePoint.position,firePoint.rotation);
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
             if (rb != null)
             {
