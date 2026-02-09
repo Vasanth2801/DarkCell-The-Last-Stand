@@ -2,15 +2,27 @@ using UnityEngine;
 
 public class Shooting : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [Header("Fire point References")]
+    [SerializeField] private Transform firePoint;
 
-    // Update is called once per frame
+    [Header("Bullet Settings")]
+    [SerializeField] private float bulletSpeed = 15f;
+
+    [Header("References")]
+    [SerializeField] private ObjectPooler pooler;
+
     void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            Shoot();
+        }
+    }
+
+    void Shoot()
+    {
+        GameObject bullet = pooler.SpawnFromPools("Bullet",firePoint.position,firePoint.rotation);
+        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+        rb.AddForce(firePoint.up *  bulletSpeed,ForceMode2D.Impulse);
     }
 }
