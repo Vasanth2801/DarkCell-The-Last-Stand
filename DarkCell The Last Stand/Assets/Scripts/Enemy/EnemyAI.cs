@@ -8,10 +8,12 @@ public class EnemyAI : MonoBehaviour
     [Header("Enemy Settings")]
     [SerializeField] private Transform player;
     [SerializeField] private float speed = 3f;
+    Playerhealth health;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        health = FindObjectOfType<Playerhealth>();
     }
 
     void Update()
@@ -29,7 +31,7 @@ public class EnemyAI : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Attacking the Player");
+            health.TakeDamage(10);
         }
     }
 }

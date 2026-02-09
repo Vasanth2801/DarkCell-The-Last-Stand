@@ -1,10 +1,9 @@
 using UnityEngine;
 
-public class EnemyHealth : MonoBehaviour
+public class Playerhealth : MonoBehaviour
 {
-    [Header("Enemy Health Settings")]
-    [SerializeField] float currentHealth;
-    [SerializeField] float maxHealth = 40;
+    [SerializeField] private int maxHealth = 100;
+    [SerializeField] private int currentHealth;
 
     private void Start()
     {
