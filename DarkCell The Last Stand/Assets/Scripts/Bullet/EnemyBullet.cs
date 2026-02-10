@@ -9,7 +9,6 @@ public class EnemyBullet : MonoBehaviour
         health = FindObjectOfType<Playerhealth>();
     }
 
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         gameObject.SetActive(false);

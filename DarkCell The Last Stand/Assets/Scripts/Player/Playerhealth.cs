@@ -1,22 +1,32 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Playerhealth : MonoBehaviour
 {
-    [SerializeField] private int maxHealth = 100;
-    [SerializeField] private int currentHealth;
+    public float health;
+    public float maxHealth = 100f;
+    public Image healthBar;
+    public GameObject gameOverPanel;
 
-    private void Start()
+    void Start()
     {
-        currentHealth = maxHealth;
+        health = maxHealth;
     }
 
-    public void TakeDamage(int  damage)
+    void Update()
     {
-        currentHealth -= damage;
+        healthBar.fillAmount = Mathf.Clamp(health / maxHealth, 0, 1);
+    }
 
-        if(currentHealth <= 0)
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+
+        if (health <= 0)
         {
             Destroy(gameObject);
+            gameOverPanel.SetActive(true);
+            Time.timeScale = 0;
         }
     }
 }
